@@ -98,7 +98,7 @@ if __name__ == '__main__':
     cross_l = 0.9
 
     #generations
-    generations = 100
+    generations = 200
 
     #percentage_infected
     percentage_infected = 0.05
@@ -198,9 +198,6 @@ if __name__ == '__main__':
     #cria o ag
     ag = GeneticAlgorithm(population_size, chromosome_size, cross_points, cross_l, mutation, graph.vcount(), infected_list)
 
-    for vertex in graph.vs:
-        print vertex.index, vertex['name']
-
     print "- GASIR -"
     print "Tamanho da população: ", ag.population_size
     print "Tamanho do gene: ", chromosome_size
@@ -217,6 +214,8 @@ if __name__ == '__main__':
     # for pid in range(8):
     #     process_list_init[pid].join()
 
+
+    convergence = open(sys.argv[1] + "_convergence.txt",'a')
 
     while ag.generation < generations:
         best = 0
@@ -245,9 +244,11 @@ if __name__ == '__main__':
             performance_average += perf
 
         # print performance_average/ag.population_size
+        convergence.write(str(performance_average/ag.population_size) + "\n")
 
         # print ag.global_best_performance
 
+    convergence.close()
 
     best_individuals = []
     for i, fitness in enumerate(ag.individual_performance):
