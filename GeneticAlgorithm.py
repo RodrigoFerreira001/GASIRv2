@@ -5,7 +5,7 @@ import random
 import sys
 
 class GeneticAlgorithm():
-    def __init__(self, population_size, chromosome_size, cross_points, cross_l, mutation_l, graph_size, infecteds):
+    def __init__(self, population_size, chromosome_size, cross_points, cross_l, mutation_l, graph_size, infecteds, vaccinateds):
         self.population_size = population_size
         self.chromosome_size = chromosome_size
         self.cross_points = cross_points
@@ -13,6 +13,7 @@ class GeneticAlgorithm():
         self.mutation_l = mutation_l
         self.graph_size = graph_size
         self.infecteds = infecteds
+        self.vaccinateds = vaccinateds
 
         self.population = []
         self.individual_performance = Array('i', range(population_size), lock=False)
@@ -25,8 +26,14 @@ class GeneticAlgorithm():
 
         self.generation = 0
 
+        if vaccinateds != None:
+            for i in range(int(population_size * 0.5)):
+                temp = random.sample(vaccinateds, chromosome_size)
+                self.population.append(temp)
+                print temp
+
         # cria a população inicial e inicializa a lista de avaliação de indivíduos
-        for i in range(self.population_size):
+        while len(self.population) < self.population_size:
             temp = random.sample(range(graph_size), chromosome_size)
 
             # remove infectados
@@ -41,6 +48,7 @@ class GeneticAlgorithm():
                     temp.append(x)
 
             self.population.append(temp)
+
 
 
     def parents_select(self):

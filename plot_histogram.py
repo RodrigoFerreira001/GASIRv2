@@ -27,9 +27,16 @@ for value in histogram:
     if value > max_height:
         max_height = value
 
+best_individuals = []
 for i, value in enumerate(histogram):
-    if value > 1400:
-        print i,',',
+    best_individuals.append([i, value])
+
+best_individuals.sort(key=lambda x: x[1], reverse=True)
+
+# for individual in best_individuals:
+#     print individual
+
+print [ i[0] for i in best_individuals[:30]]
 
 #plot
 plt.bar(range(len(histogram)), height = histogram)

@@ -5,19 +5,16 @@ from multiprocessing import Process
 from operator import itemgetter
 from SIRModel import SIRModel
 
-from ndlib.models.epidemics import SIRModel as sir
-import ndlib.models.ModelConfig as mc
-
 from igraph import *
 import argparse
 import random
-import networkx as nx
 
 ag = None
 graph = None
 beta = None
 gamma = None
 infected_list = None
+vaccinated_list = None
 
 id_name_dict = {}
 name_id_dict = {}
@@ -59,6 +56,7 @@ if __name__ == '__main__':
 
     #optional args
     parser.add_argument("--infecteds", help = "Initial infecteds", type = int, nargs='*')
+    parser.add_argument("--vaccinateds", help="Initial vaccinated", type=int, nargs='*')
     # parser.add_argument("--selection_mode", help = "GA's parents select mode", type = int)
     parser.add_argument("--cross_points", help = "Crossover cross points number", type = int)
     parser.add_argument("--mutation", help = "Crossover mutation level", type = float)
@@ -195,8 +193,11 @@ if __name__ == '__main__':
     else:
         infected_list = random.sample(range(graph.vcount()), int(graph.vcount() * percentage_infected))
 
+    if(args.vaccinateds):
+        vaccinated_list = args.vaccinateds[:]
+
     #cria o ag
-    ag = GeneticAlgorithm(population_size, chromosome_size, cross_points, cross_l, mutation, graph.vcount(), infected_list)
+    ag = GeneticAlgorithm(population_size, chromosome_size, cross_points, cross_l, mutation, graph.vcount(), infected_list, vaccinated_list)
 
     print "- GASIR -"
     print "Tamanho da população: ", ag.population_size
