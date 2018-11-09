@@ -36,7 +36,7 @@ best_individuals.sort(key=lambda x: x[1], reverse=True)
 # for individual in best_individuals:
 #     print individual
 
-print [ i[0] for i in best_individuals[:30]]
+print [ i[0] for i in best_individuals[:35]]
 
 #plot
 plt.bar(range(len(histogram)), height = histogram)

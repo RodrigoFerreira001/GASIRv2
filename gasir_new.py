@@ -195,6 +195,8 @@ if __name__ == '__main__':
 
     if(args.vaccinateds):
         vaccinated_list = args.vaccinateds[:]
+        for i in range(len(vaccinated_list)):
+            vaccinated_list[i] = name_id_dict[vaccinated_list[i]]
 
     #cria o ag
     ag = GeneticAlgorithm(population_size, chromosome_size, cross_points, cross_l, mutation, graph.vcount(), infected_list, vaccinated_list)
@@ -240,12 +242,11 @@ if __name__ == '__main__':
         # print "Infectados: ", ag.best_performance
         # print " ------------------------ "
 
-        performance_average = 0.0
-        for perf in ag.individual_performance:
-            performance_average += perf
+        temp = ag.population[:]
+        temp.sort(key = lambda x: x[1])
 
         # print performance_average/ag.population_size
-        convergence.write(str(performance_average/ag.population_size) + "\n")
+        convergence.write(str(temp[0][1]) + "\n")
 
         # print ag.global_best_performance
 

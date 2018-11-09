@@ -14,7 +14,9 @@ for vertex in graph.vs:
     name_id_dict.update({int(vertex['name']): vertex.index})
 
 layout = graph.layout('kk')
-names = [232, 167, 179, 137, 231, 237, 25, 1, 64, 215, 21, 52, 178, 207, 20, 118, 60, 89, 102, 58, 24, 128, 51, 131, 78, 121, 15, 152, 177, 54, 48, 23, 136, 2, 218, 144, 61, 29, 133, 59]
+# names = [9, 4, 5, 3, 32, 61, 25, 27, 19, 20]
+# names = [232, 231, 179, 167, 207, 215, 237, 1, 137, 102, 58, 20, 25, 64, 178, 21, 89, 60, 52, 51, 118, 24, 15, 78, 48, 121, 54, 61, 177, 70, 2, 218, 217, 152, 128]
+names = [6, 9, 127, 113, 45, 90, 48, 196, 2, 111, 69, 65, 43, 14, 7, 44, 102, 53, 71, 143, 172, 42, 46, 17, 175, 114, 177, 64, 171, 179]
 
 # Olhar isso daqui
 ids = [name_id_dict[i] for i in names]
@@ -26,7 +28,7 @@ visual_style["vertex_color"] = ['#00ff00' if int(vertex['name']) in names else '
 visual_style["vertex_label"] = graph.vs["name"]
 visual_style["layout"] = layout
 # visual_style["vertex_label_size"] = [10 + (150 * v.indegree() / float(graph.maxdegree())) for v in graph.vs()]
-visual_style["bbox"] = (1366,768)
+visual_style["bbox"] = (800,600)
 # visual_style["margin"] = 20
 
 # print graph
