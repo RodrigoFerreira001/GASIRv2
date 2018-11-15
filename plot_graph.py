@@ -20,6 +20,7 @@ names = [6, 9, 127, 113, 45, 90, 48, 196, 2, 111, 69, 65, 43, 14, 7, 44, 102, 53
 
 # Olhar isso daqui
 ids = [name_id_dict[i] for i in names]
+print ids
 
 visual_style = {}
 # visual_style["vertex_size"] = vertex_size
@@ -45,10 +46,10 @@ pagerank_tmp = graph.pagerank()
 closeness_tmp = graph.closeness()
 degree_tmp = graph.vs.degree()
 
-print sys.argv[1], ":"
-print "id\tbetweenness\tpagerank\tcloseness\tdegree"
-for id in ids:
-    print id_name_dict[id],'\t', betweenness_tmp[id], '\t', pagerank_tmp[id], '\t', closeness_tmp[id], '\t', degree_tmp[id]
+# print sys.argv[1], ":"
+# print "id\tbetweenness\tpagerank\tcloseness\tdegree"
+# for id in ids:
+#     print id_name_dict[id],'\t', betweenness_tmp[id], '\t', pagerank_tmp[id], '\t', closeness_tmp[id], '\t', degree_tmp[id]
 
 
 plot(graph, **visual_style)
